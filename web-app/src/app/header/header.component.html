@@ -1,0 +1,56 @@
+<mat-sidenav-container >
+  <mat-sidenav #sidenav position="start" role="navigation" style="background-color: #0062E6">
+    <mat-nav-list >
+      <a mat-list-item (click)="sidenav.close()" [routerLink]="'#'" style="font-size: large;font-weight: bold;color: white" *ngIf="tokenService.getToken() != null"> Baby Vaccinations </a>
+      <a mat-list-item (click)="sidenav.close()" [routerLink]="'#'" style="font-size: large;font-weight: bold;color: white" *ngIf="tokenService.getToken() != null"> Healthy food </a>
+    </mat-nav-list>
+    <mat-nav-list>
+      <a mat-list-item (click)="sidenav.close()" [routerLink]="'/signup'" style="font-size: large;font-weight: bold;color: white" *ngIf="tokenService.getToken() == null"> Sign Up </a>
+      <a mat-list-item (click)="sidenav.close()" [routerLink]="'/login'" style="font-size: large;font-weight: bold; color: white" *ngIf="tokenService.getToken() == null"> Login </a>
+
+      <a mat-list-item (click)="sidenav.close()" [routerLink]="'/timeline'" style="font-size: large;font-weight: bold; color: white" *ngIf="tokenService.getToken() != null"> Timeline </a>
+      <a mat-list-item (click)="sidenav.close()" [routerLink]="'/profile'" style="font-size: large;font-weight: bold;color: white" *ngIf="tokenService.getToken() != null"> Profile </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content    >
+    <mat-toolbar color="primary"  style="position: fixed;z-index: 5" >
+      <div fxHide.gt-sm  fxLayout fxLayoutAlign="flex-start" >
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu </mat-icon>
+        </button>
+      </div>
+      <div>
+        <img width="50" height="50" [src]="logoUrl">
+        <span><a style="font-size: larger;padding-top: 30px" [routerLink]="''" class="title">{{companyTitle}}</a></span>
+      </div>
+
+      <div fxFlex fxLayout fxLayoutAlign="flex-start" fxLayoutGap="20px" fxHide.sm fxHide.xs style="margin-left: 40px" >
+        <ul class="navigation-items" fxLayout fxLayoutGap="20px">
+          <li *ngIf="tokenService.getToken() != null">
+            <a mat-list-item (click)="sidenav.close()" [routerLink]="'#'" style="font-size: large;font-weight: bold"> Baby Vaccinations </a>
+          </li>
+          <li *ngIf="tokenService.getToken() != null">
+            <a mat-list-item (click)="sidenav.close()" [routerLink]="'#'" style="font-size: large;font-weight: bold"> Healthy food </a>
+          </li>
+        </ul>
+      </div>
+
+      <div fxFlex fxLayout fxLayoutGap="20px" fxLayoutAlign="flex-end"  fxHide.sm fxHide.xs>
+        <ul fxLayout  class="navigation-items" fxLayoutGap="20px">
+         <li *ngIf="tokenService.getToken() == null"><a mat-list-item (click)="sidenav.close()" [routerLink]="'/signup'" style="font-size: large;font-weight: bold"> Sign Up </a></li>
+          <li *ngIf="tokenService.getToken() == null"><a mat-list-item (click)="sidenav.close()" [routerLink]="'/login'" style="font-size: large;font-weight: bold"> Login </a></li>
+          <li *ngIf="tokenService.getToken() != null"><a mat-list-item (click)="sidenav.close()" [routerLink]="'/timeline'" style="font-size: large;font-weight: bold"> Timeline </a></li>
+          <li *ngIf="tokenService.getToken() != null"><a mat-list-item (click)="sidenav.close()" [routerLink]="'/profile'" style="font-size: large;font-weight: bold"> Profile </a></li>
+          <li *ngIf="tokenService.getToken() != null"><a mat-list-item style="cursor: pointer" (click)="logout()"> <i class="fa fa-sign-out" aria-hidden="true"></i> </a></li>
+        </ul>
+      </div>
+
+    </mat-toolbar>
+    <main style="margin-top: 63px">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+

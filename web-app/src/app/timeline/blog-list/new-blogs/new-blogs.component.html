@@ -1,0 +1,8 @@
+
+
+<mat-grid-list [cols]="breakpoint" rowHeight="550px" (window:resize)="onResize($event)">
+  <mat-grid-tile
+    *ngFor="let blog of blogs, let  i = index" >
+    <app-blog [blog]="blog" [index]="i"></app-blog>
+  </mat-grid-tile>
+</mat-grid-list>

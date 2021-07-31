@@ -1,0 +1,27 @@
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <img mat-card-avatar [src]="userImage"  class="example-header-image">
+    <mat-card-title> {{blog.user.username}}</mat-card-title>
+    <mat-card-subtitle>{{blog.categories}}</mat-card-subtitle>
+
+    <span style="margin: 20px"> {{blog.date|date:'short'}}</span>
+  </mat-card-header>
+  <img mat-card-image [src]="image"  width="200px" height="200px" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <h2>
+      {{ blog.title }}
+    </h2>
+    <p>
+      {{ blog.description }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <mat-icon class="click" color="primary" *ngIf="likeIt === true" (click)="onLike(true)">favorite</mat-icon>
+    <mat-icon class="click" color="primary" *ngIf="likeIt === false" (click)="onLike(false)">favorite_border</mat-icon>
+    <small> {{blog.likes.length }}</small>
+
+    <button mat-raised-button color="primary" (click)="openDialog()" style="margin-left: 100px">more</button>
+
+  </mat-card-actions>
+</mat-card>

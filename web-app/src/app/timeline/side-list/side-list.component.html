@@ -1,0 +1,44 @@
+
+<button mat-mini-fab class="setting-button" color="primary" aria-label="Example icon button with a menu icon"
+        (click)="drawer.toggle(); opened = !opened" *ngIf="!opened">
+  <mat-icon>menu</mat-icon>
+</button>
+
+<button mat-icon-button class="setting-button" color="primary" aria-label="Example icon button with a menu icon"
+        (click)="drawer.toggle(); opened = !opened" *ngIf="opened">
+  <mat-icon>menu</mat-icon>
+</button>
+<mat-drawer-container class="example-container" (window:resize)="onResize($event)">
+
+  <mat-drawer opened mode="side" #drawer  class="nav-list">
+
+    <mat-nav-list role="list" style="margin-top: 40px" >
+      <mat-list-item role="listitem" class="nav-list-item" (click)="openDialog()">
+        <!--        <button mat-raised-button color="primary">Primary</button>-->
+        Create Blog
+      </mat-list-item>
+
+      <mat-list-item  [ngClass]="{'back-ground': newBlogs === true }"role="listitem" class="nav-list-item" (click)="getNewBlogs()">
+        <span [matBadge]="badge">New Blogs</span>
+      </mat-list-item>
+
+      <mat-list-item [ngClass]="{'back-ground': !savedBlogs && !myBlogs && !newBlogs}"   role="listitem" class="nav-list-item" (click)="getAllBlogs()" >
+        All Blogs
+      </mat-list-item>
+
+      <mat-list-item [ngClass]="{'back-ground': savedBlogs === true }"   role="listitem" class="nav-list-item" (click)="getSavedBlogs()" >
+        my likes
+      </mat-list-item>
+
+      <mat-list-item [ngClass]="{'back-ground': myBlogs === true }"role="listitem" class="nav-list-item" (click)="getMyBlogs()">
+        My Blogs
+      </mat-list-item>
+
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+
+    <app-blog-list  [savedBlogs]="savedBlogs" [myBlogs]="myBlogs" [newBlogs]="newBlogs"></app-blog-list>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,29 @@
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+.div-info{
+  display: block;
+  width: 700px;
+  height: 500px;
+  border: solid;
+  border: black;
+  border: 10px;
+  margin-left: 60px;
+}
+

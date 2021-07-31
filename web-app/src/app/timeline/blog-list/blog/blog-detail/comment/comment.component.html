@@ -1,0 +1,19 @@
+<div class="d-flex flex-row mb-2"> <img [src]="comment.user.profileImg||defaultImae" width="40" class="rounded-image" >
+  <div class="d-flex flex-column ml-2"> <span class="name">{{comment.user.username}}</span> <small class="comment-text">{{comment.text}}</small>
+    <div class="d-flex flex-row align-items-center status"> <small class="click" (click)="hideReplies()">Reply</small>  <small class="click">{{comment.date | date}}</small> </div>
+  </div>
+</div >
+<div style="margin-left: 25px; margin-right: 10px" *ngIf="showReplies">
+  <div *ngFor="let subComment of comment.comments"  >
+    <div class="d-flex flex-row mb-2" *ngIf="subComment.user !== undefined">
+      <img [src]="defaultImae||subComment.user.profileImg" width="40" class="rounded-image" >
+      <div class="d-flex flex-column ml-2"> <span class="name">{{subComment.user.username}}</span> <small class="comment-text">{{subComment.text}}</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="comment-input" >
+    <input type="text" class="form-control" (keydown.enter)="saveCommentToComment(text, comment.id)" #text>
+    <span class="fonts"><a style="color: #455f6b" ><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i></a><input type='file' (change)="onFileChanged($event)"/></span>
+  </div>
+</div>

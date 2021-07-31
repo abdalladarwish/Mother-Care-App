@@ -1,0 +1,62 @@
+<div class="list-items">
+  <div *ngIf="type === 'events'">
+    <h1 class="text-center"  style="font-weight: bolder; font-size: x-large"> Upcoming events </h1>
+    <ul class="list-group mx-auto" style="width: 90%; margin-top: 20px" >
+      <mat-accordion *ngFor="let event of items" class="list-group-item" style="width: 100%;" fxFlex>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="mx-auto" style="position: center; font-weight: bold; font-size: large">
+              <div fxLayout="row" fxLayoutAlign="8px">
+                <span *ngIf="event.title == 'Medication time'"><i class="fa fa-medkit " aria-hidden="true" style="margin-right: 3px"></i></span>
+                <span *ngIf="event.title == 'Doctor visit'"><i class="fa fa-user-md " aria-hidden="true" style="margin-right: 3px"></i></span>
+                <span *ngIf="event.title == 'Memory'"><i class="fa fa-birthday-cake " aria-hidden="true"></i></span>
+                {{event.title}}
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div fxLayout="column">
+            <p class="pull-left" style="text-align: left; font-weight: bold; color: #0062E6">
+              Description : {{event.description}}
+            </p>
+            <div fxLayout="row" fxLayoutAlign="50px">
+              <p class="pull-left" style="text-align: left; font-weight: bold; color: #0062E6" fxFlex>
+                <span style="padding-right: 10px; font-weight: bold">Start Date :</span>{{event.startDate}}
+              </p>
+              <p class="pull-left" style="text-align: left; font-weight: bold; color: #0062E6" fxFlex>
+                <span style="padding-right: 10px; font-weight: bold">End Date :</span> {{event.endDate}}
+              </p>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </ul>
+  </div>
+
+
+  <div *ngIf="type === 'issues'">
+    <h1 class="text-center" style="font-weight: bolder; font-size: x-large"> Baby issues </h1>
+    <ul class="list-group mx-auto" style="width: 90%; margin-top: 20px" >
+
+      <mat-accordion *ngFor="let issue of items" class="list-group-item" style="width: 100%;">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="mx-auto" style="position: center; font-weight: bold; font-size: large">
+              {{issue.babyName}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div fxLayout="column">
+            <p class="pull-left" style="text-align: left; font-weight: bold; color: #0062E6">
+              Description : {{issue.description}}
+            </p>
+            <p class="pull-left" style="text-align: left; font-weight: bold; color: #0062E6">
+              <span style="padding-right: 40px; font-weight: bold">Read :</span>{{issue.sensorRead.value}}
+            </p>
+            <p class="pull-left" style="text-align: left; font-weight: bold; color: #0062E6">
+              <span style="padding-right: 40px; font-weight: bold">Date :</span> {{issue.sensorRead.time}}
+            </p>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<div id="body1" style="width: 100%; height: 875px">
+  <div class="container" >
+    <div id="loading-spinner-row" class="row" *ngIf="isLoading">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto my-lg-5">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+    </div>
+    <div id="signup-form" class="row"  *ngIf="!isLoading">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="alert alert-danger" style="height: 50px" *ngIf="error">
+          <h4 style="text-align: center;font-size: 20px;color: red">{{error}}</h4>
+        </div>
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center" style="font-weight: bolder">Sign up</h5>
+            <form class="form-signin" (ngSubmit)="onSubmitForm(form)" #form="ngForm" >
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="firstName"> First name</label>
+                    <input type="text" id="firstName" class="form-control" placeholder="First name" ngModel name="firstName" required autofocus>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="lastName"> Last name</label>
+                    <input type="text" id="lastName" class="form-control" placeholder="Last name" ngModel name="lastName" required autofocus>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="firstName"> Username</label>
+                    <input type="text" id="userName" class="form-control" placeholder="Username" ngModel name="username" required autofocus>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="gender"> Gender</label>
+                    <select id="gender" class="form-control" [ngModel]="defaultGender" name="gender" >
+                      <option>Male</option>
+                      <option> Female</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="datepicker"> Birthday </label>
+                <div class="row flex-fill">
+                  <div class="col-9">
+                    <input id="datepicker" name="datepicker" type="text"
+                           placeholder="Datepicker"
+                           class="form-control"
+                           bsDatepicker [bsConfig]="{ isAnimated: true }" ngModel name="birthOfDate">
+                  </div>
+                  <div class="col-1" style="padding-bottom: 10px">
+                    <span> <i  class="fa fa-calendar fa-3x" aria-hidden="true"></i></span>
+                  </div>
+
+
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail"> Phone </label>
+                <input type="number" id="phone" class="form-control" placeholder="Phone" ngModel name="phone"  required autofocus #phone="ngModel">
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail"> Email </label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email" ngModel name="email"  required autofocus email #email="ngModel">
+                <span class="help-block error-message" *ngIf="email.invalid && email.touched">Please enter a valid email</span>
+              </div>
+
+              <div class=" form-group" class="mainPass">
+                <label for="inputPassword"> Password</label>
+                <input [type]="passVisi" id="inputPassword" class="form-control" placeholder="Password" ngModel name="password" minlength="6" required>
+                <div>
+                  <a style="cursor: pointer" (click)="toggleVisibiltiy()" *ngIf="passVisi === 'text'"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                  <a style="cursor: pointer" (click)="toggleVisibiltiy()" *ngIf="passVisi === 'password'"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                </div>
+              </div>
+
+              <div class=" form-group" class="confirmed">
+                <label for="confirmPassword"> Confirm password</label>
+                <input [type]="confVisi" id="confirmPassword" class="form-control" placeholder="Password" ngModel name="confirmPassword" minlength="6" required>
+                <div>
+                  <a style="cursor: pointer" (click)="toggleVisibiltiy()" *ngIf="confVisi === 'text'"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                  <a style="cursor: pointer" (click)="toggleVisibiltiy()" *ngIf="confVisi=== 'password'"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                </div>
+                <span class="help-block error-message" *ngIf="invalidConfirmPassword">Does not match the password</span>
+              </div>
+
+
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" [disabled]="!form.valid" type="submit">Sign up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

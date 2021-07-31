@@ -1,0 +1,43 @@
+<div class="my-paginator-outline">
+  <div class="my-paginator">
+    <span>
+    Author
+  </span>
+    <mat-form-field color="primary" appearance="outline" >
+      <mat-label>Select</mat-label>
+      <mat-select [(value)]="user" (selectionChange)="authorChanged($event.value)" >
+        <mat-option  value="mother-care" >Mother Care</mat-option>
+        <mat-option value="all">All</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="my-paginator">
+    <span>
+    Category
+  </span>
+    <mat-form-field color="primary" appearance="outline" >
+      <mat-label>Select</mat-label>
+      <mat-select [(value)]="category" (selectionChange)="categoryChanged($event.value)">
+        <mat-option value="all">All</mat-option>
+        <mat-option *ngFor="let category of categoryList" [value]="category">{{category}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <mat-paginator class="my-paginator" fxFlex [length]="totalLength"
+                 [pageSize]="12"
+                 [pageIndex]="pageIndex"
+                 [pageSizeOptions]="[5, 10, 25, 100]"
+                 (page)="pageEvent = getServerData($event)">
+  </mat-paginator>
+
+
+</div>
+
+<mat-grid-list [cols]="breakpoint" rowHeight="550px" (window:resize)="onResize($event)">
+  <mat-grid-tile
+    *ngFor="let blog of blogs, let  i = index" >
+    <app-blog [blog]="blog" [index]="i"></app-blog>
+  </mat-grid-tile>
+</mat-grid-list>

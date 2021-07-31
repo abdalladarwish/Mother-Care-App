@@ -1,0 +1,57 @@
+<div class="container border" style="border-radius: 2rem" >
+
+  <div class="d-flex justify-content-between p-2 px-3">
+    <div class="d-flex flex-row align-items-center"> <img [src]="image" width="50" class="rounded-circle">
+      <div class="d-flex flex-column ml-2"> <span class="font-weight-bold">{{blog.user.username}}</span> <small class="text-primary">{{blog.categories}}</small> </div>
+    </div>
+    <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">{{ blog.date|date:'short' }}</small>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button class="click" mat-menu-item (click)="openDialogCreate()" [disabled]="!myBlog" >
+          <mat-icon>edit</mat-icon>
+          <span>edit</span>
+        </button>
+        <button class="click" mat-menu-item (click)="deleteBlog()"  [disabled]="!myBlog">
+          <mat-icon>delete</mat-icon>
+          <span>delete blog</span>
+        </button>
+
+        <button class="click" mat-menu-item (click)="closeDialog()" *ngIf="!newTap" [routerLink]="['/blog', index]">
+          <mat-icon>open_in_new</mat-icon>
+          <span>new tap</span>
+        </button>
+
+      </mat-menu>
+    </div>
+  </div>
+
+  <quill-view-html [content]="blog.html" theme="snow" >
+
+  </quill-view-html>
+
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex flex-row icons d-flex align-items-center">
+      <a >
+        <i class="fa fa-heart click" *ngIf="likeIt" (click)="onLike(true)" ></i>
+        <i class="fa fa-heart-o click" *ngIf="!likeIt" (click)="onLike(false)"></i>
+      </a>
+      <small> {{blog.likes.length }}</small>
+    </div>
+    <div class="d-flex flex-row muted-color"> <span>{{blog.comments.length}} comments</span> <span class="ml-2">Share</span> </div>
+  </div>
+
+  <hr>
+  <div class="comments" style="margin-top: 0.5rem; margin-bottom: 0.5rem">
+    <div *ngFor="let comment of blog.comments; let i = index">
+      <app-comment [comment]="comment" [blogIndex]="i"></app-comment>
+    </div>
+    <div class="comment-input" >
+      <input type="text" class="form-control" (keydown.enter)="saveComment(text)" #text>
+      <span class="fonts"><a style="color: #455f6b" ><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i></a><input type='file' (change)="onFileChanged($event)"/></span>
+    </div>
+
+  </div>
+</div>
+

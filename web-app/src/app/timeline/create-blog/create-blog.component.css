@@ -1,0 +1,17 @@
+.example-form {
+
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.green-snack {
+  background-color: forestgreen;
+  color: white;
+}
+.red-snack {
+  background-color: red;
+  color: white;
+}

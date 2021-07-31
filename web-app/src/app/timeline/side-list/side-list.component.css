@@ -1,0 +1,23 @@
+.setting-button{
+  position: fixed;
+  z-index: 10;
+  top: 70px;
+  left: 20px;
+
+}
+
+.nav-list{
+  position: fixed;
+  top: 70px;
+
+  background-color: whitesmoke;
+  width: 150px;
+}
+.nav-list-item{
+  color: #673ab7;
+}
+
+.back-ground {
+  background-color: #673AB7;
+  color: white;
+}

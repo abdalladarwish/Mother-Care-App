@@ -1,0 +1,20 @@
+.my-paginator{
+  /*border-style: solid;*/
+  /*border-width: 2px;*/
+  /*border-color: #673AB7;*/
+  /*border-radius: 20px;*/
+  /*align-content: center;*/
+  color: #673AB7;
+
+}
+.my-paginator-outline{
+  margin: 5px;
+  padding: 10px 5px 5px 0;
+  background-color: #FAFAFA;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #673AB7;
+  border-radius: 20px;
+  color: #673AB7;
+
+}

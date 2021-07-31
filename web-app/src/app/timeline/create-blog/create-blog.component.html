@@ -1,0 +1,47 @@
+<form class="example-form" width = "1000px"  #form="ngForm" (window:resize)="onResize($event)">
+
+
+  <p>
+    <mat-form-field  class="example-full-width"  appearance="legacy">
+      <mat-label>Blog Title</mat-label>
+      <input matInput id="title" placeholder="Placeholder" #title [(ngModel)]="blogEdit.title"  name="title" >
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>write meanignful title</mat-hint>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field class="example-full-width"  appearance="legacy">
+      <mat-label>Blog Discreption</mat-label>
+      <input matInput id="description" placeholder="Placeholder" #decription [(ngModel)]="blogEdit.description" name="discription" >
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>write shortly</mat-hint>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <input type="file" id ="img" style="display: none" #fileInput accept="image/*" (change)="onChangeFileInput()" ngModel  autofocus/>
+    <button mat-raised-button color="primary" class="file-select-button" (click)="onClickFileInputButton()">
+      <mat-icon>add_photo_alternate</mat-icon>
+      select Image
+    </button>
+
+  </p>
+
+  <p>
+    <mat-form-field class="example-full-width"  appearance="fill">
+      <mat-label>Categories</mat-label>
+      <mat-select [formControl]="categories" [(ngModel)]="blogEdit.categories" multiple >
+        <mat-option *ngFor="let category of categoryList" [value]="category">{{category}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+
+  <div style="height: 250px; margin: 5px; display: block">
+    <quill-editor  [(ngModel)]="blogEdit.html" name="quill"  [modules]="modules"></quill-editor>
+
+  </div >
+    <button mat-raised-button style="margin-top: 80px" color="primary" type="submit" [disabled]="!title.value|| !decription.value|| !file || !blogEdit.html" (click)="submit(title.value, decription.value)" >create </button>
+
+
+</form>

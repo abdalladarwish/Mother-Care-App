@@ -1,0 +1,92 @@
+#body1{
+  background-image: url("../../../assets/images/newimg3.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 1000px;
+
+}
+
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}
+
+.error-message{
+  font-size: 11px;
+  color: red
+}
+
+
+#loading-spinner-row{
+  text-align: center;
+  padding-top: 200px;
+}
+
+.mainPass{
+  position: relative;
+}
+
+.mainPass div{
+  position: absolute;
+  left: 355px;
+  top: 40px;
+}
+
+.confirmed{
+  position: relative;
+}
+
+.confirmed div{
+  position: absolute;
+  left: 355px;
+  top: 40px;
+}
+
+#signup-form{
+  padding-top: 65px
+}
+
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+}
+
+body{
+  background-image: url('https://s.zkcdn.net/Advertisers/d36ea4926dfa4978ab2556ba7688692c.png') ;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height:100%;
+
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+
+.form-signin {
+  width: 100%;
+}
+
+.form-signin .btn {
+  font-size: 90%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+}

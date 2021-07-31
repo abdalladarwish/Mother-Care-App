@@ -1,0 +1,130 @@
+<div class="div-info">
+    <h1 style="text-align: center; font-size: xx-large;font-weight: bolder;color: blue">Additional Information</h1>
+    <div class="row" style="margin-top: 40px">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="height" style="color: black">Enter your height</label>
+          <input type="number" id="height" style="width: 80%" class="form-control"  placeholder="Height" [(ngModel)]="userInfo.height">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="weight" style="color: black">Enter your weight</label>
+          <input type="number" id="weight" style="width: 80%" class="form-control" placeholder="Weight"  [(ngModel)]="userInfo.weight">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="datepicker" style="color: black"> Last period date</label>
+            <div class="row flex-fill">
+              <div class="col-9">
+                <input id="datepicker" name="datepicker" type="text"
+                       placeholder="Datepicker"
+                       class="form-control"
+                       bsDatepicker [bsConfig]="{ isAnimated: true }" [(ngModel)]="userInfo.lastPeriodDate">
+              </div>
+              <div class="col-1" style="padding-bottom: 10px">
+                <span> <i  class="fa fa-calendar fa-3x" style="color: black" aria-hidden="true"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="anemiaRate" style="color: black">Enter your anemia rate</label>
+          <input id="anemiaRate" style="width: 80%" class="form-control" placeholder="Anemia rate" type="number" [(ngModel)]="userInfo.anemiaRate">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-5">
+        <div class="form-group">
+          <mat-form-field appearance="outline" >
+            <mat-label style="color: black">Blood type</mat-label>
+            <mat-select [(ngModel)]="userInfo.bloodType">
+              <mat-option value="A">A</mat-option>
+              <mat-option value="B">B</mat-option>
+              <mat-option value="AB">AB</mat-option>
+              <mat-option value="O">O</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="form-group">
+          <mat-form-field appearance="outline" >
+            <mat-label style="color: black">Period length</mat-label>
+            <mat-select  [(ngModel)]="userInfo.periodLength">
+              <mat-option value="2">2</mat-option>
+              <mat-option value="3">3</mat-option>
+              <mat-option value="4">4</mat-option>
+              <mat-option value="5">5</mat-option>
+              <mat-option value="6">6</mat-option>
+              <mat-option value="7">7</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-5">
+        <div class="form-group" style="padding-top: 10px">
+          <section class="example-section">
+            <label class="example-margin" style="color: black">Pregnant: </label>
+            <mat-radio-group [(ngModel)]="pregnant">
+              <mat-radio-button class="example-margin" value="yes" style="color: black">Yes</mat-radio-button>
+              <mat-radio-button class="example-margin" value="no" style="color: black">No</mat-radio-button>
+            </mat-radio-group>
+          </section>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group" style="padding-top: 10px">
+          <section class="example-section">
+            <label class="example-margin" style="color: black">Do you have children : </label>
+            <mat-radio-group [(ngModel)]="haveChildren">
+              <mat-radio-button class="example-margin" value="yes" style="color: black">Yes</mat-radio-button>
+              <mat-radio-button class="example-margin" value="no" style="color: black">No</mat-radio-button>
+            </mat-radio-group>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6" *ngIf="haveChildren == 'yes'">
+        <div class="form-group">
+          <label for="childrenNum" style="color: black">Enter number of your children</label>
+          <input type="number" id="childrenNum" style="width: 80%" class="form-control" placeholder="No. of children"  [(ngModel)]="userInfo.childrenNum">
+        </div>
+      </div>
+      <div class="col-6" *ngIf="pregnant == 'yes'">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="datepicker" style="color: black">Pregnancy date</label>
+            <div class="row flex-fill">
+              <div class="col-9">
+                <input id="datepicker1" name="datepicker" type="text"
+                       placeholder="Pregnancy date"
+                       class="form-control"
+                       bsDatepicker [bsConfig]="{ isAnimated: true }"  [(ngModel)]="userInfo.pregnancyDate">
+              </div>
+              <div class="col-1" style="padding-bottom: 10px">
+                <span> <i  class="fa fa-calendar fa-3x" style="color: black" aria-hidden="true"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-right: 40px" fxLayout="row" fxLayoutGap="10px" class="float-right">
+      <button class="btn-primary text-uppercase float-right" mat-button (click)="skipUserInfo()">Skip</button>
+      <button class="btn-primary text-uppercase float-right" mat-button (click)="addUserInfo()">Sumbit</button>
+    </div>
+</div>

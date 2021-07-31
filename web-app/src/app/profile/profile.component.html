@@ -1,0 +1,122 @@
+<div class="container-fluid emp-profile" style="justify-content: center; padding-top: 30px">
+    <div class="row" style="margin-top: 20px">
+      <div class="col-md-3" style ="text-align: center">
+        <div class="profile-img " style="margin-left: -50px">
+          <img style="width: 255px;  height: 255px;border: solid blue" [src]="profileImg" class="rounded-circle" alt="profile picture"/>
+          <div class="file btn btn-lg btn-primary">
+            <span><a href='#' class="inactiveLink"><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i></a><input class="activeLink" type='file' (change)="updateProfileImg($event)"/></span>
+          </div>
+        </div>
+        <ul class="list-group" style="width: 90%; margin-top: 20px" *ngIf="tab == 0">
+          <li class="list-group-item "><a style="font-weight: bold; font-size: x-large;color: #0062E6; cursor: pointer; padding-right: 10px" (click)="showList('events')">Upcoming events</a><i style="color: #0062E6" class="fa fa-calendar fa-2x"></i></li>
+          <li class="list-group-item " *ngIf="upcomingEvents.length == 0"><p>There is no upcoming events</p></li>
+
+          <mat-accordion *ngFor="let event of upcomingEvents" class="list-group-item" style="width: 100%;" fxFlex>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title class="mx-auto" style="position: center; font-weight: bold; font-size: large">
+                  <div fxLayout="row" >
+                    <span *ngIf="event.title == 'Medication time'"><i class="fa fa-medkit " aria-hidden="true" style="margin-right: 5px"></i></span>
+                    <span *ngIf="event.title == 'Doctor visit'"><i class="fa fa-user-md " aria-hidden="true" style="margin-right: 5px"></i></span>
+                    <span *ngIf="event.title == 'Memory'"><i class="fa fa-birthday-cake " aria-hidden="true" style="margin-right: 5px"></i></span>
+                    {{event.title}}
+                  </div>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout="column">
+                <p class="pull-left" style="text-align: left; font-weight: bold; color: #0062E6">
+                  Description : {{event.description}}
+                </p>
+                <p class="pull-left" style="text-align: left; font-weight: bold; color: #0062E6">
+                  <span style="padding-right: 10px; font-weight: bold">Start Date :</span>{{event.startDate}}
+                </p>
+                <p class="pull-left" style="text-align: left; font-weight: bold; color: #0062E6">
+                  <span style="padding-right: 10px; font-weight: bold">End Date :</span> {{event.endDate}}
+                </p>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+        </ul>
+
+        <ul class="list-group" style="width: 90%; padding-top: 20px" *ngIf="tab == 1" fxLayout="column">
+          <li class="list-group-item " >
+            <a style="font-weight: bold; font-size: x-large;color: #0062E6; padding-right: 10px;cursor: pointer" (click)="showList('issues')">Baby Issues</a>
+            <i style="color: #0062E6" class="fa fa-bomb fa-2x" aria-hidden="true"></i>
+          </li>
+          <li class="list-group-item " *ngIf="recentBabyIssues.length == 0"><p>There is no baby issues</p></li>
+
+          <mat-accordion *ngFor="let issue of recentBabyIssues" class="list-group-item" style="width: 100%">
+              <mat-expansion-panel >
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="mx-auto" style="position: center; font-weight: bold; font-size: large">
+                    <div fxLayout="row" >
+                      <span><i class="fa fa-child" aria-hidden="true" style="margin-right: 5px"></i></span>
+                      <i class="fas fa-baby"></i>
+
+
+                      {{issue.babyName}}
+                    </div>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div fxLayout="column">
+                  <p class="pull-left" style="text-align: left; font-weight: bold; color: #0062E6">
+                    Description : {{issue.description}}
+                  </p>
+                  <p class="pull-left" style="text-align: left; font-weight: bold; color: #0062E6">
+                    <span style="padding-right: 20px; font-weight: bold">Read :</span>{{issue.sensorRead.value}}
+                  </p>
+                  <p class="pull-left" style="text-align: left; font-weight: bold; color: #0062E6">
+                    <span style="padding-right: 20px; font-weight: bold">Date :</span> {{issue.sensorRead.time}}
+                  </p>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+        </ul>
+        <br>
+      </div>
+
+      <div class="col-md-9">
+        <div class="profile-head" >
+          <div class="row">
+            <div class="col-6" fxLayout="column" fxLayoutAlign="center ">
+              <p style="font-size:2vw;font-weight: bold">
+                {{theUser.firstName + " " +theUser.lastName}}
+              </p>
+              <p style="font-size:1.5vw;color: #44484b">
+                {{theUser.username}}
+              </p>
+            </div>
+            <div class="col-6" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center" *ngIf="pregnancyAccomplishment != null">
+              <p style="font-weight: bolder;font-size: xx-large;font-family: 'Apple Color Emoji';padding-bottom: 20px"> Pregnancy </p>
+              <mat-progress-spinner
+                class="example-margin"
+                color="black"
+                mode="determinate"
+                [value]="pregnancyAccomplishment"
+                diameter="140"
+                aria-label ="Pregnancy">
+              </mat-progress-spinner>
+              <p style="font-weight: bold; font-family: 'Apple Color Emoji'; font-size: x-large">{{pregnancyAccomplishment}}%</p>
+            </div>
+          </div>
+          <br>
+
+          <mat-tab-group mat-align-tabs="left" (selectedTabChange)="tab = $event.index" style="margin-top: 20px">
+            <mat-tab label="Calendar">
+              <br>
+              <br>
+              <app-calendar></app-calendar>
+            </mat-tab>
+            <mat-tab label="Baby monitoring">
+              <baby-monitor></baby-monitor>
+            </mat-tab>
+            <mat-tab label="Info">
+              <user-info></user-info>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+</div>
+
